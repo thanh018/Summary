@@ -108,16 +108,65 @@ I. JAVASCRIPT
     let bar = "bar1";
     let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
   ```
+6. Closure
+- a persistent local variable scope
+- a persistent scope that holds on to local variables
+- languages which support closure will allow you to keep a reference to a scope
+
+```
+  outer = function() {
+    var a = 1;
+    var inner = function() {
+      console.log(a);
+    }
+    return inner; // this returns a function
+  }
+
+  var fnc = outer(); // execute outer to get inner 
+  fnc();
+```
+- inner function gains access to the outer function's local variables, including `a`
+- `a` is in scope for the inner func
+- normally, when func exits, all its variables are blown away!
+- if we return inner func and assign it to a variable 'fnc' so that persist after outer has exited
+- all of the variables were in scope when inner also persist -> `a` persist because the function persist as long as the function continue exist
+- `a` has been closed over - within a closure
+- `a` belongs to scope of `outer`
+- the scope of `inner` has a parent point to the scope of `outer`
+- `fnc` is a variable which points to `inner`. `a` persist as long as `fnc` persist. `a` is within a closure.
 
 9. Await vs Promise
 - https://stackoverflow.com/questions/34401389/what-is-the-difference-between-javascript-promises-and-async-await
-
+- Both Promise chaining and async/await solve the problem of callback hell
+- which method you choose is matter of personal preference.
   9.1. async/await
   - give you a synchronous feel to asynchronous code
   - very elegant form of syntactic sugar
   - return value of async functions is a promise
   - gives us the possibility of writing asynchronous in a synchronous manner
+  Callback hell
+  ```
+    api.getUser('test', function(err, user) {
+      if (err) throw err
+      api.getPostsOfUser(user, function(err, posts) {
+        if (err) throw err
+        api.getCommentsOfPosts(posts, function(err, comments) {
+          // etc
+        })
+      })
+    })
+  ```
 
+  Promsise
+  ```
+    api
+      .getUser('test')
+      .then(user => api.getPostsOfUser(user))
+      .then(posts => api.getCommentsOfPosts(posts))
+      .catch(err => {
+        throw err
+      })
+  ```
   Promise chaining:
   ```
     function logFetch(url) {
@@ -130,7 +179,11 @@ I. JAVASCRIPT
         });
     }
   ```
-  Async function:
+  Async function
+  - make your code cleaner
+  - in case you need complicated control flow
+  - be more readable than promise chaining
+  - This is especially true when the mount of promises we're using increase
 
   ```
     async function logFetch(url) {
