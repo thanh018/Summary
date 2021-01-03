@@ -26,7 +26,7 @@ JAVASCRIPT
 REACT
 
 1. React Element & React Component
-https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471
+- https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471
 
   1.1. React Element
   - gets returned from Components
