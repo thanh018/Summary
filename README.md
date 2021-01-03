@@ -130,6 +130,23 @@ II. REACT
   - if you return true, the component re-renders
   - it can be used to prevent the component re-rendering on fine-grained levels
 
+6. Tell some react-hooks you know, how to write an react-hook?
+- https://www.digitalocean.com/community/tutorials/react-hooks
+- Hooks bring statefulness and lifecycle method, previous only available from class component to function component
+- Hooks can only be called from within function components and custom hooks
+
+  6.1. Component state
+  - we need to initialize the state using useState
+
+  6.2. Component lifecycle
+  - Hooks feature is the addition of useEffect which is a combination of
+  - componentDidMount, componentDidUpdate, componentWillUnmount
+  - useEffect will fire after initial render and subsequent re-renders
+
+7.	Write a countdown by using react-hook
+- https://github.com/do-community/react-hooks-timer/blob/master/src/App.js
+- https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks
+
 8. do you need to usecallback
   https://stackoverflow.com/questions/53159301/what-does-usecallback-usememo-do-in-react
   https://stackoverflow.com/questions/54963248/whats-the-difference-between-usecallback-and-usememo-in-practice/54963730
