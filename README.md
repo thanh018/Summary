@@ -31,7 +31,7 @@ I. JAVASCRIPT
 - https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var
 - let can be re-assigned
 - const can not be re-assigned (can re-assigned value of each key in obj was declared with const)
-`
+```
   function run() {
     var foo = "Foo";
     let bar = "Bar";
@@ -47,8 +47,8 @@ I. JAVASCRIPT
   }
 
   run();
-`
-`
+```
+```
   var funcs = [];
   // let's create 3 functions
   for (var i = 0; i < 3; i++) {
@@ -62,14 +62,14 @@ I. JAVASCRIPT
     // and now let's run each one to see
     funcs[j]();
   }
-`
+```
 - `My value: 3` was output to console each time `funcs[j]()` was invoked anonynomus function was bound to the same variable
 
   3.2 Hoisting
   - variables declared with var are hoisted
   - initialize with undefined before the code run
   - they are acessible in their enclosing scope even before the declared
-  `
+  ```
     function run() {
       console.log(foo); // undefined
       var foo = "Foo";
@@ -77,37 +77,37 @@ I. JAVASCRIPT
     }
 
     run();
-  `
+  ```
   - let variables are not initialized until their definition is evaluated.
-  `
+  ```
     function checkHoisting() {
       console.log(foo); // ReferenceError
       let foo = "Foo";
     }
 
     checkHoisting();
-  `
+  ```
 
   3.3. global object
   - let does not create a property in global objects
 
-  `
+  ```
     var foo = "Foo";  // globally scoped
     let bar = "Bar"; // globally scoped
 
     console.log(window.foo); // Foo
     console.log(window.bar); // undefined
-  `
+  ```
 
   3.4. Redeclaration
-  `
+  ```
     'use strict';
     var foo = "foo1";
     var foo = "foo2"; // No problem, 'foo' is replaced.
 
     let bar = "bar1";
     let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
-  `
+  ```
 
 II. REACT
 
