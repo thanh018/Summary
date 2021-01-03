@@ -1,9 +1,9 @@
-JAVASCRIPT
+I. JAVASCRIPT
 
 1. Load javascript: defer, async, đặt cuối thẻ body khác nhau sao?
   https://stackoverflow.com/questions/10808109/script-tag-async-defer
 
-  Defect
+  1.1. Defect
   - Delaying script execution until the HTML parse has finished
   - The DOM will be available for your script
   - Not every browsers supports defer yet
@@ -16,17 +16,17 @@ JAVASCRIPT
   - It wont help you at all in older browsers
   - It isnt realy any faster than just putting the script right before `</body>` tag
 
-  Async
+  1.2. Async
   - Dont care script will be available
   - HTML parsing may be continued. The script will be execution as soon as its ready
   - Is more useful when you dont care when the script loading
   - You dont depend upon the script loading
   - Its not urgent to run soon and its stands alone so nothing else depends upon it
 
-REACT
+II. REACT
 
 1. React Element & React Component
-- https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471
+  https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471
 
   1.1. React Element
   - gets returned from Components
@@ -102,72 +102,73 @@ REACT
   - Bind in contructor (es2015)
   https://atomizedobjects.com/blog/react/what-is-the-difference-between-usememo-and-usecallback/
 
-* useCallback and useMemo use memoization
-- I like to thing of memoization as remembering something
-- both useMemo and useCallback remember something between renders until
-- dependencies changes
-- the difference is just what they remember
-- these two hooks are primarily based arround performance between renders
+ 8.1. useCallback and useMemo use memoization
+  - I like to thing of memoization as remembering something
+  - both useMemo and useCallback remember something between renders until
+  - dependencies changes
+  - the difference is just what they remember
+  - these two hooks are primarily based arround performance between renders
+  - useMemo will remember the rendered value from function
+  - useCallback will remember the actual function, the memoized version of the callback, memoized callback
+  - useful when passing callbacks to optimized child component that rely on reference equality to prevent unnecessary renders
 
-* useMemo will remember the rendered value from function
-* useCallback will remember the actual function, the memoized version of the callback, memoized callback
-- useful when passing callbacks to optimized child component that rely on reference equality to prevent unnecessary renders
-
-* useMemo
-- A component can re-render even if its props don’t change
-- due to a parent component re-rendering causing the child component re-render
-- to void this, we can wrap a child component in React.memo()
-- to ensure it only re-renders if props have changed
-- the memoized version of the component above will compare new props and only
-- re-render if they have changed
-- it's worth noting that comparison is done on a shallow basis.
-- if you need fine-grained control you can supply a custom comparison function as the second argument
+  8.2. useMemo
+  - A component can re-render even if its props don’t change
+  - due to a parent component re-rendering causing the child component re-render
+  - to void this, we can wrap a child component in React.memo()
+  - to ensure it only re-renders if props have changed
+  - the memoized version of the component above will compare new props and only
+  - re-render if they have changed
+  - it's worth noting that comparison is done on a shallow basis.
+  - if you need fine-grained control you can supply a custom comparison function as the second argument
 
 11. Middleware
-- providing a third-party extention point
-- between dispatching action and the moment it reaches the reducer
+  11.1.
+  - providing a third-party extention point
+  - between dispatching action and the moment it reaches the reducer
 
-https://redux.js.org/tutorials/fundamentals/part-6-async-logic
-- The thunk middleware allow us to write function that get dispatch and getState as arguments
-- thunk can have any async logic we want inside
-- with the plain Redux store, you can do simple synchronous update by dispatching an action
-- Middleware extends the store's abilities and lets you write async logic that interact with the store
-- thunk is a Function that can be dispatched to perform async activity and can dispatch and read state
-- A action creator that returns a thunk
-- thunk middleware lets me dispatch thunk async actions as if they were actions
-- this is useful for server side rendering because you can wait data is available then synchronous render the app
-https://github.com/reduxjs/redux-thunk
-https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34599594#34599594
-- one thing I like about Thunk approach is that the component doesn't care that action creator is async
-- it just call dispatch normally
-- The benefit of using middleware like Redux Thunk is that component aren't aware of
-- how action creators are implemented and whether they care about Redux state
-- whether they are synchronous or asynchronous
-- whether or not they call other action creator
-- Redux thunk and friends is just one possible approach to asynchronous request in Redux app 
+  https://redux.js.org/tutorials/fundamentals/part-6-async-logic
+  - The thunk middleware allow us to write function that get dispatch and getState as arguments
+  - thunk can have any async logic we want inside
+  - with the plain Redux store, you can do simple synchronous update by dispatching an action
+  - Middleware extends the store's abilities and lets you write async logic that interact with the store
+  - thunk is a Function that can be dispatched to perform async activity and can dispatch and read state
+  - A action creator that returns a thunk
+  - thunk middleware lets me dispatch thunk async actions as if they were actions
+  - this is useful for server side rendering because you can wait data is available then synchronous render the app
+  https://github.com/reduxjs/redux-thunk
+  https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34599594#34599594
+  - one thing I like about Thunk approach is that the component doesn't care that action creator is async
+  - it just call dispatch normally
+  - The benefit of using middleware like Redux Thunk is that component aren't aware of
+  - how action creators are implemented and whether they care about Redux state
+  - whether they are synchronous or asynchronous
+  - whether or not they call other action creator
+  - Redux thunk and friends is just one possible approach to asynchronous request in Redux app 
 
-https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34599594#34599594
-* another intresting approach is Redux Saga which let you take actions as they come, transform, perform
-- request before outputing actions
-- running request in parallel
-- the useage of takeLatest permit to express that you are only interested to get the data of the LAST usernames clicked
-- handle concurrency problems in case the user click very fast on a lot of usernames
-- this is kind of stuck with thunks
+  https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34599594#34599594
 
-- Thunks are called by the action creator on each new action
-- Actions are continually pushed to thunks and thunks have no control on when to stop those actions
-- In saga, generator pull the next action. they have control when to listen for some action and when to not
+  11.2.
+  - another intresting approach is Redux Saga which let you take actions as they come, transform, perform
+  - request before outputing actions
+  - running request in parallel
+  - the useage of takeLatest permit to express that you are only interested to get the data of the LAST usernames clicked
+  - handle concurrency problems in case the user click very fast on a lot of usernames
+  - this is kind of stuck with thunks
+  - Thunks are called by the action creator on each new action
+  - Actions are continually pushed to thunks and thunks have no control on when to stop those actions
+  - In saga, generator pull the next action. they have control when to listen for some action and when to not
 
-* saga:
-- create the task will perform the asynchronous action
-- launch the above task on each action
-- takeEvery allows mutiple fetchData instances to be started concurrently
-- at a give moment, we can start a new fetchData task while there are still one or move previous fetchData task
-- which have not yet terminated
-- takeLatest allows only one fetchData task to run at any moment
-- it is latest started task
-- if a previous task is still running when another fetchData task is started,
-- the previous task will be automatically cancelled
+  11.3. saga:
+  - create the task will perform the asynchronous action
+  - launch the above task on each action
+  - takeEvery allows mutiple fetchData instances to be started concurrently
+  - at a give moment, we can start a new fetchData task while there are still one or move previous fetchData task
+  - which have not yet terminated
+  - takeLatest allows only one fetchData task to run at any moment
+  - it is latest started task
+  - if a previous task is still running when another fetchData task is started,
+  - the previous task will be automatically cancelled
 
 10. Redux
 - Redux is a pattern and library for managing and updating application state, using events called "actions".
@@ -177,33 +178,33 @@ https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async
 - the patterns and tools provided by redux make it easy to understand when, where, why and how the state
 - in your application is being updated
 
-STORE
-- the center of redux application is the Store
-- A store is a container that holds your application global's state
-- Create a plain action object to decribes something that happens in the application, and then
-- dispatch / execute the action to the store
-- when a action is dispatched, the store runs the root reducer 
-- Lets it calculate the new state based on the old state and the payload of the action
-- the store will notify to the subscribers that the state has been updated so UI can be updated with the new data
+  10.1. STORE
+  - the center of redux application is the Store
+  - A store is a container that holds your application global's state
+  - Create a plain action object to decribes something that happens in the application, and then
+  - dispatch / execute the action to the store
+  - when a action is dispatched, the store runs the root reducer 
+  - Lets it calculate the new state based on the old state and the payload of the action
+  - the store will notify to the subscribers that the state has been updated so UI can be updated with the new data
 
-STATE, ACTION, REDUCER
-- state value describes the application
-- reducer receive two arguments, the current state and an action object describing what happened
-- action object always have a type field
+  10.2. STATE, ACTION, REDUCER
+  - state value describes the application
+  - reducer receive two arguments, the current state and an action object describing what happened
+  - action object always have a type field
 
-UI
-- The user interface will show existing state on screen
-- User does something, the app will update its data
-- and redraw the UI with those values
+  10.3. UI
+  - The user interface will show existing state on screen
+  - User does something, the app will update its data
+  - and redraw the UI with those values
 
-Details:
-- When the store state changes, update UI by reading the latest store state and show new data
-- and subscribers redraw whenever the data changes in the future
+  10.4. Details:
+  - When the store state changes, update UI by reading the latest store state and show new data
+  - and subscribers redraw whenever the data changes in the future
 
-store
-- create a store instance by Redux library createStore API
-- pass reducer to createStore generate initial state and to calculate future updates
-- A user does something, Redux application need to repond to input, create action object describes what happened
-- and dispatching to the store
-- when we call dispatch store.dispatch(action), the store run reducer, calculate the updated state
-- and run subscribers to update UI
+  10.5. store
+  - create a store instance by Redux library createStore API
+  - pass reducer to createStore generate initial state and to calculate future updates
+  - A user does something, Redux application need to repond to input, create action object describes what happened
+  - and dispatching to the store
+  - when we call dispatch store.dispatch(action), the store run reducer, calculate the updated state
+  - and run subscribers to update UI
