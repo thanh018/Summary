@@ -94,6 +94,42 @@ II. REACT
   https://stackoverflow.com/questions/34990190/reconciliation-in-react-detailed-explanation
   https://evilmartians.com/chronicles/optimizing-react-virtual-dom-explained
 
+4. HOCs, renderProps?
+- https://www.robinwieruch.de/react-higher-order-components
+
+  4.1. HOC and conditional rendering
+  - take a component and optional arguments as input (conditonal function) and return enhanced component of input component
+  - takes an input and return another function
+  - with React context, takes a Component and returns another function (function stateless component or ES6 class component)
+  - High-order components are reusable
+  - higher-order components take an input component and an optional payload.
+  - this optional payloads are often used for configuration
+  - the payload function that return true of false to decide the condition rendering
+  - you could high-order components but with a function that determines the condition rendering
+
+  4.2. compose is HOC library
+  - pass your input component through all High-order component functions
+
+5. How to prevent a component render?
+- Pure components defined as function will always re-render
+- convert the component to class and prevent the re-render in `shouldComponentUpdate()` returning false
+- https://stackoverflow.com/questions/41763031/how-to-prevent-react-from-re-rendering-the-whole-component
+
+  5.1. Pure Component
+  - does shallow compare on the component's props and state
+  - if nothing changes, it prevents the re-render of the component
+  - if something changes, it re-renders
+  - if you want to use functional stateless components as Pure Component instead,
+  - use recompose's pure high-order-component
+  - import `{ pure }` from `recompose` to wrap that component
+  - https://www.robinwieruch.de/react-prevent-rerender-component
+
+  5.2. class component with shouldComponentUpdate method
+  - has access to the next props and state before running the re-rendering component
+  - that's where you can decide to prevent the re-render by return false from this method
+  - if you return true, the component re-renders
+  - it can be used to prevent the component re-rendering on fine-grained levels
+
 8. do you need to usecallback
   https://stackoverflow.com/questions/53159301/what-does-usecallback-usememo-do-in-react
   https://stackoverflow.com/questions/54963248/whats-the-difference-between-usecallback-and-usememo-in-practice/54963730
@@ -220,3 +256,5 @@ II. REACT
 - it's really equivalent `document.getElementById('foo-id');`
 - controlling HTML media elements
 - Refs with React Hooks Using useRef
+- https://www.digitalocean.com/community/tutorials/react-createref
+- https://www.digitalocean.com/community/tutorials/react-refs
