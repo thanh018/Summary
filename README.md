@@ -108,6 +108,19 @@ I. JAVASCRIPT
     let bar = "bar1";
     let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
   ```
+
+5. Implement a map function
+```
+  Array.prototype.mymap = function(callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.length; index++) {
+      resultArray.push(callback(this[index], index, this));
+    }
+    return resultArray;
+  }
+
+  [1, 2, 3].myMap(function(item) { return item + 1});
+```
 6. Closure
 - a persistent local variable scope
 - a persistent scope that holds on to local variables
