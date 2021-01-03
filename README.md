@@ -208,3 +208,15 @@ II. REACT
   - and dispatching to the store
   - when we call dispatch store.dispatch(action), the store run reducer, calculate the updated state
   - and run subscribers to update UI
+
+20. Ref
+- React's virtual DOM
+- There are some cases, you need to interact with the actual elements
+- for these occasions, React provides a ref system
+- using Refs to get value of an input
+- using Refs to focus the input
+- To interact with directly DOM element, using React's createRef method allows you just do that
+- React provides a way to get references to DOM nodes by using React.createRef()
+- it's really equivalent `document.getElementById('foo-id');`
+- controlling HTML media elements
+- Refs with React Hooks Using useRef
