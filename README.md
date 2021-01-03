@@ -109,6 +109,42 @@ I. JAVASCRIPT
     let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
   ```
 
+9. Await vs Promise
+- https://stackoverflow.com/questions/34401389/what-is-the-difference-between-javascript-promises-and-async-await
+
+  9.1. async/await
+  - give you a synchronous feel to asynchronous code
+  - very elegant form of syntactic sugar
+  - return value of async functions is a promise
+  - gives us the possibility of writing asynchronous in a synchronous manner
+
+  Promise chaining:
+  ```
+    function logFetch(url) {
+      return fetch(url)
+        .then(response => response.text())
+        .then(text => {
+          console.log(text);
+        }).catch(err => {
+          console.error('fetch failed', err);
+        });
+    }
+  ```
+  Async function:
+
+  ```
+    async function logFetch(url) {
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        console.log(text);
+      }
+      catch (err) {
+        console.log('fetch failed', err);
+      }
+    }
+  ```
+
 II. REACT
 
 1. React Element & React Component
