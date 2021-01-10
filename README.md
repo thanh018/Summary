@@ -221,7 +221,7 @@ II. REACT
   - it's an object
   - that virtually decribes the DOM nodes that Components 
   - With function component, this element is object that function returned
-  - with function component, this element is the object that component render function returned
+  - with class component, this element is the object that component render function returned
   - React elements are not what we can see in the browsers.
   - They are just objects in memory and we can't change anything about them
   - decribes what we want to see on the screen
@@ -463,3 +463,47 @@ II. REACT
 - Refs with React Hooks Using useRef
 - https://www.digitalocean.com/community/tutorials/react-createref
 - https://www.digitalocean.com/community/tutorials/react-refs
+
+21. Promise
+- https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+* Summary this post
+
+- an object that can be returned a synchronous from asynchronous function
+- Async Function standard used to make a asynchronous code look synchronous
+- will be in one of 3 possiable state:
+- fulfilled: `resolve()` was called;
+- rejected: `reject()` was called: the reason for rejection
+- pending: no yet 2 states above but transition into a fulfilled or rejected
+
+- es6 promise constructor takes a function
+- takes 2 parameters `resolve()` or `reject()`
+- `resolve()`: pass a callback function attached with `.then()`
+- `reject()`:  pass an Error object
+
+- `.then()`: return a new promise
+- it's possible to promise chain
+
+- ex: promise chaining
+```
+    fetch(url)
+      .then(process)
+      .then(save)
+      .catch(handleErrors)
+    ;
+```
+- promise chain: will result in a sequence, that runs in serial
+- assuming each function `fetch()`, `process()`, `save()` return a promise
+- `process()` will wait for `fetch()` to complete before starting
+- `save()` will wait for `process()` to complete before starting
+- `handleErrors()` will only run if any of the previous promises reject
+
+- Extras of Native JS Promise
+- `Promise.resolve()` returns a resolved promise
+- `Promise.reject()` returns a rejected promise
+- `Promise.race()` takes an array and returns a promise, that 
+  - resolves with value of the first promise that resolves OR
+  - rejects with the reason of the first promise that rejects
+- `Promise.all()` takes an array and returns a promise, that
+  - resolves when all of the promises in arguments have resolved OR
+  - rejects with the reason of the first promise that rejects
+
