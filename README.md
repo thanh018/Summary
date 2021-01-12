@@ -537,3 +537,10 @@ II. REACT
 - Simple answer
 - This is what allow react to be fast
 - It does this by means of virtual DOM diffing. Comparing two virtual trees — old and new — and make only the necessary changes into the real DOM.
+
+23. Object
+- https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
+- Js has 5 data types that are passed by value: Boolean, null, undefined, String, Number (primitive types)
+- JS has 3 data types that are passed by reference: Array, Function, Object
+- Objects are created at some location in your computer's memory
+- An address points to the location, in memory, of a value that is passed by reference
