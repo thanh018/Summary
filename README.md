@@ -544,3 +544,33 @@ II. REACT
 - JS has 3 data types that are passed by reference: Array, Function, Object
 - Objects are created at some location in your computer's memory
 - An address points to the location, in memory, of a value that is passed by reference
+- A variable holding an object does not directly hold an object.
+- what it holds is `reference to an object`
+- when you assign that reference from one to another, you make a copy of the reference
+- Now both variables hold a reference to an object 
+- Modify an object through that reference, changes it for both variables, holding a reference to that object
+- When you assign a new value to one of the variables, you modify the value that variable holds
+- The variable now stop holding a reference to objects and instead of holding something else
+- The other variable is still holding its reference original object, the assignment didn't influence it at all.
+
+```
+  var objOne = {
+    x: 1,
+    y: 2
+  };
+
+  // objOne -> { x: 1, y: 2 }
+
+  var objTwo = objOne; // when you assign that reference from one to another, you make a copy of the reference
+
+  // objOne -> { x: 1, y: 2 } <- objTwo
+
+  objTwo.x = 2; // Modify an object through that reference, changes it for both variables, holding a reference to that object
+
+  // objOne -> { x: 2, y: 2 } <- objTwo (update object via objTwo variable)
+
+  objTwo = {}; // When you assign a new value to one of the variables, you modify the value that variable holds
+
+  // objOne -> { x: 2, y: 2 }, objTwo -> {}
+```
+  (https://stackoverflow.com/questions/37290747/pass-by-reference-javascript-objects)
