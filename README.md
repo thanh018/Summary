@@ -538,7 +538,7 @@ II. REACT
 - This is what allow react to be fast
 - It does this by means of virtual DOM diffing. Comparing two virtual trees — old and new — and make only the necessary changes into the real DOM.
 
-23. Object
+23. Pass by reference object
 - https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
 - Js has 5 data types that are passed by value: Boolean, null, undefined, String, Number (primitive types)
 - JS has 3 data types that are passed by reference: Array, Function, Object
@@ -558,6 +558,19 @@ II. REACT
     x: 1,
     y: 2
   };
+
+  const PAGING_CONFIG = {
+    pageSize: 30,
+    pageOrder: 0,
+  };
+
+  
+  useEffect(() => {
+    const payload = PAGING_CONFIG; // const payload = { ...PAGING_CONFIG };
+    payload.pageOrder = 1;
+    action.getFetchData(payload)
+    console.log(PAGING_CONFIG) // { pageSize: 30, pageOrder: 1 };
+  }, [])
 
   // objOne -> { x: 1, y: 2 }
 
