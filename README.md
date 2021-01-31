@@ -148,6 +148,32 @@ I. JAVASCRIPT
 - the scope of `inner` has a parent point to the scope of `outer`
 - `fnc` is a variable which points to `inner`. `a` persist as long as `fnc` persist. `a` is within a closure.
 
+The same `once() function` in lodash
+
+```
+  var log = function() { console.log(1) };
+
+  var outer = function(f) {
+    var isCalled = false;
+    return function() {
+        if (!isCalled) {
+            isCalled = true;
+            return f();
+        }
+    }
+  }
+
+  var result = outer(log);
+
+  result(); // 1
+  result(); // undefined
+
+```
+- `isCalled` persist because the function `result` persist as long as the function continue exist
+- `result` variable point `f()`
+- `isCalled` persist as long as `result` persist. `isCalled` is within a closure.
+
+
 9. Await vs Promise
 - https://stackoverflow.com/questions/34401389/what-is-the-difference-between-javascript-promises-and-async-await
 - Both Promise chaining and async/await solve the problem of callback hell
@@ -364,7 +390,9 @@ II. REACT
   - if you need fine-grained control you can supply a custom comparison function as the second argument
 
 11. Middleware
+
   11.1.
+  - Redux middleware function provides a medium to interact with dispatched action before they reach the reducer
   - providing a third-party extention point
   - between dispatching action and the moment it reaches the reducer
 
