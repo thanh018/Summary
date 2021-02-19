@@ -14,7 +14,7 @@ I. JAVASCRIPT
   In `<head>` tag
   - The loading of script will be deferred until DOM has been parsed
   - It wont help you at all in older browsers
-  - It isnt realy any faster than just putting the script right before `</body>` tag
+  - It isnt really any faster than just putting the script right before `</body>` tag
 
   2.2. Async
   - Dont care script will be available
@@ -22,6 +22,7 @@ I. JAVASCRIPT
   - Is more useful when you dont care when the script loading
   - You dont depend upon the script loading
   - Its not urgent to run soon and its stands alone so nothing else depends upon it
+  - `async` downloads the file during HTML parsing and will pause the HTML parser to execute it when it has finished downloading.
 
 3. Phân biệt var, let, const
 - main difference is scoping rules
@@ -615,3 +616,70 @@ II. REACT
   // objOne -> { x: 2, y: 2 }, objTwo -> {}
 ```
   (https://stackoverflow.com/questions/37290747/pass-by-reference-javascript-objects)
+
+24. Remove the same item in array
+
+```
+  let users = [1, 1, 2, 2, 3, 3, 5, 8, 10, 23, 15];
+
+  function isExistsArray(arr, x) {
+      for(let item of arr) {
+          if(item === x) return true;
+      }
+      return false;
+  }
+
+  // [1, 2, 3, 5, 8, 10, 23, 15]
+  users.reduce((arr, item) => {
+    if (!isExistsArray(arr, item)) {
+        arr.push(item);
+    }
+    return arr;
+  }, []);
+
+  // [1, 2, 3, 5, 8, 10, 23, 15]
+  for(let i = 0; i < users.length; i++){
+    for(let j = i+1; j < users.length; j++){
+        if (users[i] === users[j]) {
+            users.splice(j, 1);
+        }
+    }
+  }
+
+```
+
+25. Implement function
+  case 1: add(1,2); // 3
+  case 2: add(1,2,3); // 6
+  ```
+    function add3(...x) {
+      console.log(x)
+      return x.reduce((count, item) => count + item, 0);
+    }
+  ```
+
+
+26. Compare 2 object
+
+```
+  function isObject(ob) {
+    return ob !== null && typeof ob === 'object';
+  }
+
+  function deepEqual(a, b) {
+    const keysA = Object.keys(a);
+    const keysB = Object.keys(b);
+    if (keysA.length !== keysB.length) return false;
+    
+    for (let key of keysA) {
+        const val1 = a[key];
+        const val2 = b[key];
+        const areObjects = isObject(val1) && isObject(val2);
+        // a recursive call starts to verify whether the nested objects are equal too.
+        if (areObjects && !deepEqual(val1, val2) || !areObjects && val1 !== val2) return false;
+    }
+    return true;
+  }
+```
+
+27. bind(this) explain?
