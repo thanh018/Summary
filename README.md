@@ -683,3 +683,15 @@ II. REACT
 ```
 
 27. bind(this) explain?
+
+28. show number of element in array
+  ```
+    let input = ['a', 'a', 'b', 'c', 'b', 'c', 'd']; // output: {a: 2, b: 2, c: 2, d: 1}
+
+    input.reduce((ob, chars) => {
+        if (!ob[chars]) ob[chars] = 1;
+        else ob[chars]++
+        return ob;
+    }, {})
+
+  ```
