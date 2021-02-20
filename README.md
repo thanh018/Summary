@@ -695,3 +695,104 @@ II. REACT
     }, {})
 
   ```
+
+29. copy shadow obj and deep obj
+
+30. Server side rendering?
+
+31. Generator function?
+
+--- VUE
+
+1. Method
+- A method invocation will always run whenever a re-render happen
+- In case where you do not want caching
+
+2. Computed: Return cached values until dependencies change
+(Computed nó như là property của component nhưng property nó đc tính toán)
+- Computed properties are cached based on their reactive dependencies
+- A computed will only re-evaludate when some of its dependencies have changed
+- In case you want to compose a new data from existing data sources,
+  to manipulate a large group of data,
+  to use values directly in the template
+
+3. Watch
+(Watch thì mình theo dõi cái property đó change để khi nào nó change giá trị mình expected 
+  thì mình thực hiện tính toán khi cần)
+nó xay dựng tường minh hết ak anh
+- Allow us to perform asynchorous operation (accessing an API),
+  limit how often we perform that operation
+- In case you want to listen when data property changes,
+  to watch a data property until it reaches some specific value and then do something
+
+4.
+Mutation vs action khác nhau sao?
+Mà sao mình không change state ở trong action mà phải change state ở mutation
+- Nhiệm vụ mutation: là change state và nó thực hiện tác vụ đồng bộ
+  => để mình có thể biết state đó 'được thay đổi bởi action nào'
+  mutations are essentially events: each mutation has a name and a handler.
+  mutation is the only way to modify state
+  mutation doesn't care about business logic, it just cares about "state"
+  mutating the state
+- Nhiệm vụ của actions khác mutation là : nó thực hiện các tác vụ bất đồng bộ
+  => nên đa phần mình sẽ call api ở chỗ này
+  Actions: Actions are just functions that dispatch mutations.
+  action is business logic
+  it just implements the business logic
+  doesn't care about data changing
+  commit mutations
+  An action takes a context object, which we can use to call commit to commit a mutation.
+
+5.
+React & vue khác nhau như thế nào
+  react js: nó binding data one way
+  vue js: binding data two way
+
+a/ 2 binding?
+  Two Way
+  - Changes made in view will reflect in Controller
+  - changes made in Controller will reflect in View
+b/ 1 binding?
+  One Way
+  - Once you set the value it will not affect the View or Controller for further changes
+
+
+6. Single-Page Application
+- The simplest answer is an SPA or Single Page Application is a web app
+  that loads a single HTML page and all the necessary assets (such as JavaScript and CSS)
+  required for the application to run
+- It then uses dynamic techniques (AJAX) to update just parts of that page,
+  instead of making a round trip to the server to create new pages.
+full: https://stackoverflow.com/questions/51506533/what-is-single-page-application
+7. So sanh dispatch vs commit
+`$dispatch` triggers an action, and `commit` triggers a mutation
+
+ex: getUser => save vao` store
+
+mounted / created:  dispatch("loadCurrentUser") vi du Returning a Promise
+  => $dispatch triggers an action
+  $dispatch sends a message to your vuex store to do some action.
+
+commit => It is done only from within an action => commit is synchronous
+  // The data is available now. Finally we can commit something
+  vd : context.commit("saveCurrentUser", response.body)
+
+```
+  mutations: {
+      saveCurrentUser(state, data) {
+          Vue.set(state, "currentUser", data)
+      },
+      // More commit-handlers (mutations)
+  }
+
+```
+8. mappers
+- mapState is a helper that simplifies creating a computed property
+  that reflects the value of a given state.
+- mapGetters is a helper that simplifies creating a computed property
+  that reflects the value returned by a given getter.
+- mapActions is a helper that simplifies creating a method
+  that would be equivalent as calling dispatch on an action
+- mapMutations is a helper that simplifies creating a method 
+  that would be equivalent as calling commit on an mutation
+
