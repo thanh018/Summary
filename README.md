@@ -480,6 +480,7 @@ II. REACT
   - and run subscribers to update UI
 
 20. Ref
+20.1.
 - React's virtual DOM
 - There are some cases, you need to interact with the actual elements
 - for these occasions, React provides a ref system
@@ -492,6 +493,21 @@ II. REACT
 - Refs with React Hooks Using useRef
 - https://www.digitalocean.com/community/tutorials/react-createref
 - https://www.digitalocean.com/community/tutorials/react-refs
+
+20.2. useRef
+- https://stackoverflow.com/questions/53351517/react-hooks-skip-first-run-in-useeffect/53351556#53351556
+- The useRef hook can be used to store any mutable value, so you could store a boolean indicating if it's the first time the effect is being run.
+```
+  const isFirstRun = useRef(true);
+  useEffect (() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    console.log("Effect was run");
+  });
+```
 
 21. Promise
 - https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
@@ -701,6 +717,58 @@ II. REACT
 30. Server side rendering?
 
 31. Generator function?
+
+32. React compare obj in dependence of useEffect
+- The useEffect hook runs even if one element in the dependency array has changed
+- Then even if the object is modified, the hook won't re-run because it doesn't do the deep object comparison between these dependency changes for the object.
+// https://stackoverflow.com/questions/54095994/react-useeffect-comparing-objects
+// https://github.com/facebook/react/issues/14476
+// https://dev.to/w1n5rx/ways-to-handle-deep-object-comparison-in-useeffect-hook-1elm
+
+```
+  const prevObj = usePrevious(obj); // hold prev ver
+
+  useEffect(()=>{
+    if (prevObj && !_.isEqual(prevObj,obj)) { // lodash
+      // ...execute your code
+    }
+  },[obj, prevObj])
+```
+```
+const initialRender = useRef(true); // https://stackoverflow.com/a/53351556/5644090
+  const prevBook = usePrevious(book);
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+
+    if (!_.isEqual(prevBook, book)) {
+      // do something
+    }
+  }, [book, prevBook]);
+```
+
+```
+  import useDeepCompareEffect from 'use-deep-compare-effect'
+
+  useDeepCompareEffect(()=>{
+      // ...execute your code
+  }, [obj])
+```
+
+```
+import isDeepEqual from 'fast-deep-equal/react'
+const bookRef = useRef(book)
+
+  if (!isDeepEqual(bookRef.current, book)) {
+    bookRef.current = book
+  }
+
+  useEffect(() => {
+    // do something
+  }, [bookRef.current])
+```
 
 --- VUE
 
