@@ -864,3 +864,38 @@ commit => It is done only from within an action => commit is synchronous
 - mapMutations is a helper that simplifies creating a method 
   that would be equivalent as calling commit on an mutation
 
+9. Life cycle hooks
+
+* beforeCreate
+- Runs at the very initialization of your component
+- Data has not been made reactive, and events have not been set up yet.
+
+* created
+- access reactive data
+- events that are active with the created hook.
+
+- reading/writing the reactive data
+- make an API call and then store that value
+
+* beforeMount
+- right before the initial render happens
+- after the template or render functions have been compiled.
+- perform your API calls before it’s unnecessary late in the process 
+
+* mounted
+- access to the reactive component, templates, and rendered DOM
+- watch-compute-render cycle for your component.
+
+* beforeUpdate
+- after data changes on your component 
+- before the DOM is patched and re-rendered.
+
+* updated
+- after data changes on your component and the DOM re-renders.
+
+* destroyed
+- there’s practically nothing left on your component.
+- Everything that was attached to it has been destroyed.
+
+* beforeDestroy
+- clean-up events or reactive subscriptions.
