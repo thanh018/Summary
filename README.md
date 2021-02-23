@@ -798,18 +798,18 @@ Mutation vs action khác nhau sao?
 Mà sao mình không change state ở trong action mà phải change state ở mutation
 - Nhiệm vụ mutation: là change state và nó thực hiện tác vụ đồng bộ
   => để mình có thể biết state đó 'được thay đổi bởi action nào'
-  mutations are essentially events: each mutation has a name and a handler.
-  mutation is the only way to modify state
-  mutation doesn't care about business logic, it just cares about "state"
-  mutating the state
+  - mutations are essentially events: each mutation has a name and a handler.
+  - mutation is the only way to modify state
+  - mutation doesn't care about business logic, it just cares about "state"
+  - mutating the state
 - Nhiệm vụ của actions khác mutation là : nó thực hiện các tác vụ bất đồng bộ
   => nên đa phần mình sẽ call api ở chỗ này
-  Actions: Actions are just functions that dispatch mutations.
-  action is business logic
-  it just implements the business logic
-  doesn't care about data changing
-  commit mutations
-  An action takes a context object, which we can use to call commit to commit a mutation.
+  - Actions: Actions are just functions that dispatch mutations.
+  - action is business logic
+  - it just implements the business logic
+  - doesn't care about data changing
+  - commit mutations
+  - An action takes a context object, which we can use to call commit to commit a mutation.
 
 - Instead of mutating the state, actions commit mutations.
 - Actions can contain arbitrary asynchronous operations.
@@ -822,11 +822,11 @@ React & vue khác nhau như thế nào
   react js: nó binding data one way
   vue js: binding data two way
 
-a/ 2 binding?
+- a/ 2 binding?
   Two Way
   - Changes made in view will reflect in Controller
   - changes made in Controller will reflect in View
-b/ 1 binding?
+- b/ 1 binding?
   One Way
   - Once you set the value it will not affect the View or Controller for further changes
 
