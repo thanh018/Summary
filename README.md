@@ -811,6 +811,12 @@ Mà sao mình không change state ở trong action mà phải change state ở m
   commit mutations
   An action takes a context object, which we can use to call commit to commit a mutation.
 
+- Instead of mutating the state, actions commit mutations.
+- Actions can contain arbitrary asynchronous operations.
+- In mutations you can change the state but not it actions.
+- Inside actions you can run asynchronous code but not in mutations.
+- Inside actions you can access getters, state, mutations (committing them), actions (dispatching them) etc in mutations you can access only the state.
+
 5.
 React & vue khác nhau như thế nào
   react js: nó binding data one way
