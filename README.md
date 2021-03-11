@@ -770,6 +770,48 @@ const bookRef = useRef(book)
   }, [bookRef.current])
 ```
 
+32. Clone a nested object
+
+`https://blog.logrocket.com/4-different-techniques-for-copying-objects-in-javascript-511e422ceb1e/`
+
+```
+function deep(value) {
+ if (typeof value !== 'object' || value === null) {
+   return value
+ }
+ if (Array.isArray(value)) {
+   return deepArray(value)
+ }
+ return deepObject(value)
+}
+```
+
+```
+function deepObject(ob) {
+ const result = {}
+ Object.keys(ob).forEach((key) => {
+   const value = ob[key]
+   result[key] = deep(value)
+ }, {})
+ return result;
+}
+```
+```
+function deepArray(arr) {
+ return arr.map((value) => {
+   return deep(value)
+ })
+}
+```
+
+```
+const clone = JSON.parse(JSON.stringify(object))
+```
+
+```
+Object.assign(objectA, objectB)
+```
+
 --- VUE
 
 1. Method
