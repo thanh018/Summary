@@ -33,11 +33,11 @@
       - At the end of this processes, React will have a full object representation of the DOM tree. This whole process is called reconciliation in React and is triggered each time setState or ReactDOM.render is called.
 
  5. Class based component
-        - Class syntax is one of the most common ways to define a React component. While more verbose than the functional syntax, it offers more control in the form of lifecycle hooks.
-        - We can render many instances of the same component.
-        -The instance is the "this" keyword that is used inside the class-based component.
-        - Is not created manually and is somewhere inside React's memory.
-        - Executes after the component is render for the first time (componentDidMount)
+      - Class syntax is one of the most common ways to define a React component. While more verbose than the functional syntax, it offers more control in the form of lifecycle hooks.
+      - We can render many instances of the same component.
+      -The instance is the "this" keyword that is used inside the class-based component.
+      - Is not created manually and is somewhere inside React's memory.
+      - Executes after the component is render for the first time (componentDidMount)
 
  6. Why do functional components in Reactjs not have instance?
       - You may not use ref attributes on functional components because they dont have instances
