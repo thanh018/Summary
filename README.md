@@ -98,119 +98,90 @@
   - CreateElement invocation returns an object
 
   React Components:
-  - Is a function or class which optionally accepts input and returns a React Component
-  - Is a template. This can be either a function or a class
+  - Is a function or class which optionally accepts input and returns a React Element
   - React sees a function or class as the first argument
   - It will check to see what element it renders
-  - Give the corresponding props and 
-  - Will continue to do this until there are no more createElement invocation
-  - Which have a function or a class as their first argument
+  - Give the corresponding props and will continue to do this until there are no more createElement invocation
 
   Class based component
-  - class syntax is one of the most common ways to define a React component
-  - while more verbose than the function syntax
-  - it offers more control in the form of lifecycle hooks
-  - have instance
-  - is this keyword that is used inside the class-based component
-  - creates a class component
-  - use it in any other component
-  - use props
-  - props can be accessed with this.props
-  - using state
-  - using lifecycle hooks
-  - executes after the component is render for the first time (componentDidMount)
+  - Have instance
+  - Using lifecycle
+  - Executes after the component is render for the first time (componentDidMount)
 
   Why do functional components in Reactjs not have instance?
   - [Read more 1](https://stackoverflow.com/questions/44478809/why-do-functional-component-in-reactjs-not-have-instances)
-  - you may not use ref attributes on functional components because they dont have instances
-  - the only difference between class and functional components is that can have things like
-  - constructor and lifecycle management
-  - functional components dont have instances
-  - because they are just JS function. A function cant have instance
-  - whereas, classes have instances (object) of them
-  - Default React component extend React component class, so they inherit features
-  - like lifecycle hooks and internal state management
-  - those features allow the component to keep their state between render and
-  - to behave accordingly
+  - You may not use ref attributes on functional components because they dont have instances
+  - The only difference between class and functional components is that can have things like constructor and lifecycle management
+  - Functional components don't have instances because they are just JS function. A function can't have instance whereas classes have instances (object) of them
+  - Default React component extend React component class, so they inherit features like lifecycle and internal state management
+  - Those features allow the component to keep their state between render
   - In that sense, I would call them component which have instance
   - [Read more 2](https://github.com/facebook/react/issues/4936#issuecomment-142379068)
-  - Ref dont work on the stateless components
+  - Ref don't work on the stateless components
 
-  1.6. Function Component
-  - dont have instances
-  - can be rendered mutiple times
-  - but React does not accociated a local instance each render
+  Function Component
+  - Don't have instances
+  - Can be rendered mutiple times
+  - But React does not associated a local instance each render
   - React uses invocation of the function to determine what DOM element to render for the function
 
-2. algorithms use to compare changes in DOM? reconciliation
+# 3. Algorithms use to compare changes in DOM?
   - When a component's props or state change, React decides whether an `actual DOM update` is necessary by comparing the newly returned element with the previously renderd one
   - When they are `not equal`, React will update the DOM. This process is called `reconciliation`
   - [more 1](https://stackoverflow.com/questions/34990190/reconciliation-in-react-detailed-explanation)
   - [more 2](https://evilmartians.com/chronicles/optimizing-react-virtual-dom-explained)
 
-4. HOCs, renderProps?
-- https://www.robinwieruch.de/react-higher-order-components
+# 4. HOCs, renderProps?
+- [Read more](https://www.robinwieruch.de/react-higher-order-components)
 
-  4.1. HOC and conditional rendering
-  - take a component and optional arguments as input (conditonal function) and return enhanced component of input component
-  - takes an input and return another function
-  - with React context, takes a Component and returns another function (function stateless component or ES6 class component)
+ HOC and conditional rendering
+  - With React context, takes a Component and returns another function (function stateless component or ES6 class component)
   - High-order components are reusable
-  - higher-order components take an input component and an optional payload.
-  - this optional payloads are often used for configuration
-  - the payload function that return true of false to decide the condition rendering
-  - you could high-order components but with a function that determines the condition rendering
 
-  4.2. compose is HOC library
-  - pass your input component through all High-order component functions
+# 5. How to prevent a component render?
+ - Pure components defined as function will always re-render
+ - Convert the component to class and prevent the re-render in `shouldComponentUpdate()` returning false
+ - [Read more](https://stackoverflow.com/questions/41763031/how-to-prevent-react-from-re-rendering-the-whole-component)
 
-5. How to prevent a component render?
-- Pure components defined as function will always re-render
-- convert the component to class and prevent the re-render in `shouldComponentUpdate()` returning false
-- https://stackoverflow.com/questions/41763031/how-to-prevent-react-from-re-rendering-the-whole-component
-
-  5.1. Pure Component
-  - does shallow compare on the component's props and state
-  - if nothing changes, it prevents the re-render of the component
-  - if something changes, it re-renders
-  - if you want to use functional stateless components as Pure Component instead,
-  - use recompose's pure high-order-component
+ Pure Component
+  - Does shallow compare on the component's props and state
+  - If nothing changes, it `prevents` the re-render of the component
+  - If something changes, it re-renders
+  - If you want to use functional stateless components as Pure Component instead, use recompose's pure high-order-component
   - import `{ pure }` from `recompose` to wrap that component
-  - https://www.robinwieruch.de/react-prevent-rerender-component
+  - [Read more](https://www.robinwieruch.de/react-prevent-rerender-component)
 
-  5.2. class component with shouldComponentUpdate method
-  - has access to the next props and state before running the re-rendering component
-  - that's where you can decide to prevent the re-render by return false from this method
-  - if you return true, the component re-renders
-  - it can be used to prevent the component re-rendering on fine-grained levels
+Class component with `shouldComponentUpdate` method
+  - Has access to the `next props` and `state` before running the re-rendering component that's where you can decide to prevent the re-render by return false from this method
+  - If you return true, the component re-renders
+  - It can be used to prevent the component re-rendering on fine-grained levels
 
-6. Tell some react-hooks you know, how to write an react-hook?
-- https://www.digitalocean.com/community/tutorials/react-hooks
+# 6. Tell some react-hooks you know, how to write an react-hook?
+- [Read more](https://www.digitalocean.com/community/tutorials/react-hooks)
 - Hooks bring statefulness and lifecycle method, previous only available from class component to function component
 - Hooks can only be called from within function components and custom hooks
 
-  6.1. Component state
-  - we need to initialize the state using useState
+ Component state
+  - We need to initialize the state using useState
 
-  6.2. Component lifecycle
-  - Hooks feature is the addition of useEffect which is a combination of
-  - componentDidMount, componentDidUpdate, componentWillUnmount
-  - useEffect will fire after initial render and subsequent re-renders
+ Component lifecycle
+  - Hooks feature is the addition of useEffect which is a combination of componentDidMount, componentDidUpdate, componentWillUnmount
+  - `useEffect` will fire after initial render and subsequent re-renders
 
-7.	Write a countdown by using react-hook
-- https://github.com/do-community/react-hooks-timer/blob/master/src/App.js
-- https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks
+# 7.	Write a countdown by using react-hook
+- [Read more 1](https://github.com/do-community/react-hooks-timer/blob/master/src/App.js)
+- [Read more 2](https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks)
 
-8. do you need to usecallback
-  https://stackoverflow.com/questions/53159301/what-does-usecallback-usememo-do-in-react
-  https://stackoverflow.com/questions/54963248/whats-the-difference-between-usecallback-and-usememo-in-practice/54963730
-  - useCallback does not memoize the function result
+#8. Do you need to usecallback?
+  [Read more 1](https://stackoverflow.com/questions/53159301/what-does-usecallback-usememo-do-in-react)
+  [Read more 1](https://stackoverflow.com/questions/54963248/whats-the-difference-between-usecallback-and-usememo-in-practice/54963730)
+  - `useCallback` does not memoize the function result
   - Arrow function in render
   - Bind in contructor (es2015)
-  https://atomizedobjects.com/blog/react/what-is-the-difference-between-usememo-and-usecallback/
+  [Read more 3](https://atomizedobjects.com/blog/react/what-is-the-difference-between-usememo-and-usecallback/)
 
  8.1. useCallback and useMemo use memoization
-  - I like to thing of memoization as remembering something
+  - Can call thing of memoization as remembering something
   - both useMemo and useCallback remember something between renders until
   - dependencies changes
   - the difference is just what they remember
