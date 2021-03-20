@@ -22,26 +22,8 @@
     }
     console.log(LET_IN_BLOCK); // ReferenceError
   }
-  run();
 ```
-```
-  var funcs = [];
-  // let's create 3 functions
-  for (var i = 0; i < 3; i++) {
-    // and store them in funcs
-    funcs[i] = function() {
-      // each should log its value.
-      console.log("My value: " + i);
-    };
-  }
-  for (var j = 0; j < 3; j++) {
-    // and now let's run each one to see
-    funcs[j]();
-  }
-```
-- `My value: 3` was output to console each time `funcs[j]()` was invoked anonynomus function was bound to the same variable
-
-#3. Hoisting
+# 3. Hoisting
   - Variables declared with `var` are hoisted
   - Initialize with `undefined` before the code run
   - They are accessible in their enclosing scope even before the declared
@@ -51,7 +33,6 @@
       var VAR = "VAR";
       console.log(VAR); // VAR
     }
-    run();
   ```
   - `let` variables are not initialized until their definition is evaluated.
   ```
@@ -59,31 +40,8 @@
       console.log(LET); // ReferenceError
       let LET = "LET";
     }
-    checkHoisting();
   ```
-
-  3.3. global object
-  - let does not create a property in global objects
-
-  ```
-    var foo = "Foo";  // globally scoped
-    let bar = "Bar"; // globally scoped
-
-    console.log(window.foo); // Foo
-    console.log(window.bar); // undefined
-  ```
-
-  3.4. Redeclaration
-  ```
-    'use strict';
-    var foo = "foo1";
-    var foo = "foo2"; // No problem, 'foo' is replaced.
-
-    let bar = "bar1";
-    let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
-  ```
-
-5. Implement a map function
+# 4. Implement a map function
 ```
   Array.prototype.mymap = function(callback) {
     const resultArray = [];
@@ -92,41 +50,13 @@
     }
     return resultArray;
   }
-
   [1, 2, 3].myMap(function(item) { return item + 1});
 ```
-6. Closure
-- a persistent local variable scope
-- a persistent scope that holds on to local variables
-- languages which support closure will allow you to keep a reference to a scope
-
-```
-  outer = function() {
-    var a = 1;
-    var inner = function() {
-      console.log(a);
-    }
-    return inner; // this returns a function
-  }
-
-  var fnc = outer(); // execute outer to get inner 
-  fnc();
-```
-- inner function gains access to the outer function's local variables, including `a`
-- `a` is in scope for the inner func
-- normally, when func exits, all its variables are blown away!
-- if we return inner func and assign it to a variable 'fnc' so that persist after outer has exited
-- all of the variables were in scope when inner also persist -> `a` persist because the function persist as long as the function continue exist
-- `a` has been closed over - within a closure
-- `a` belongs to scope of `outer`
-- the scope of `inner` has a parent point to the scope of `outer`
-- `fnc` is a variable which points to `inner`. `a` persist as long as `fnc` persist. `a` is within a closure.
-
-The same `once() function` in lodash
-
+# 5. Closure
+- A persistent scope that holds on to local variables
+- Languages which support closure will allow you to keep a reference to a scope
 ```
   var log = function() { console.log(1) };
-
   var outer = function(f) {
     var isCalled = false;
     return function() {
@@ -136,83 +66,16 @@ The same `once() function` in lodash
         }
     }
   }
-
   var result = outer(log);
-
   result(); // 1
   result(); // undefined
-
 ```
 - `isCalled` persist because the function `result` persist as long as the function continue exist
 - `result` variable point `f()`
 - `isCalled` persist as long as `result` persist. `isCalled` is within a closure.
 
-
-9. Await vs Promise
-- https://stackoverflow.com/questions/34401389/what-is-the-difference-between-javascript-promises-and-async-await
-- Both Promise chaining and async/await solve the problem of callback hell
-- which method you choose is matter of personal preference.
-  9.1. async/await
-  - give you a synchronous feel to asynchronous code
-  - very elegant form of syntactic sugar
-  - return value of async functions is a promise
-  - gives us the possibility of writing asynchronous in a synchronous manner
-  Callback hell
-  ```
-    api.getUser('test', function(err, user) {
-      if (err) throw err
-      api.getPostsOfUser(user, function(err, posts) {
-        if (err) throw err
-        api.getCommentsOfPosts(posts, function(err, comments) {
-          // etc
-        })
-      })
-    })
-  ```
-
-  Promsise
-  ```
-    api
-      .getUser('test')
-      .then(user => api.getPostsOfUser(user))
-      .then(posts => api.getCommentsOfPosts(posts))
-      .catch(err => {
-        throw err
-      })
-  ```
-  Promise chaining:
-  ```
-    function logFetch(url) {
-      return fetch(url)
-        .then(response => response.text())
-        .then(text => {
-          console.log(text);
-        }).catch(err => {
-          console.error('fetch failed', err);
-        });
-    }
-  ```
-  Async function
-  - make your code cleaner
-  - in case you need complicated control flow
-  - be more readable than promise chaining
-  - This is especially true when the mount of promises we're using increase
-
-  ```
-    async function logFetch(url) {
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        console.log(text);
-      }
-      catch (err) {
-        console.log('fetch failed', err);
-      }
-    }
-  ```
-
-II. REACT
-Why should we update the state directly?
+# II. REACT
+# 1. Why should we update the state directly?
   - If you try to update state directly then it `won't re-render` the component
       ```
       this.state.visible = true; // Wrong
@@ -222,36 +85,28 @@ Why should we update the state directly?
       this.setState({ visible: true });
       ```
 
-1. React Element & React Component
-  - [more](https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471)
+# 2. React Element & React Component
+  [Read more](https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element/47675471)
 
-  1.1. React Element
-  - gets returned from Components
-  - it's an object
-  - that virtually decribes the DOM nodes that Components 
-  - With function component, this element is object that function returned
-  - with class component, this element is the object that component render function returned
-  - React elements are not what we can see in the browsers.
-  - They are just objects in memory and we can't change anything about them
-  - decribes what we want to see on the screen
-  - is a object represention of a DOM nodes
-  - is not the actual thing we see on the screen rather the object represention is what is returned
+  React Element
+  - Gets returned from Components
+  - It's an object that virtually decribes the DOM nodes that Components
 
-  1.2. React is good with these way:
-  - diff an object with previous object representation to see what has changed.
-  - can update the actual DOM specifically where the changes it detected occurred
-  - createElement invocation returns an object
+  React is good with these way:
+  - Diff an object with previous object representation to see what has changed.
+  - Can update the actual DOM specifically where the changes it detected occurred
+  - CreateElement invocation returns an object
 
-  1.3. React Components:
-  - is a function or class which optionally accepts input and returns a React Component
-  - is a template. This can be either a function or a class
+  React Components:
+  - Is a function or class which optionally accepts input and returns a React Component
+  - Is a template. This can be either a function or a class
   - React sees a function or class as the first argument
-  - it will check to see what element it renders
-  - give the corresponding props and 
-  - will continue to do this until there are no more createElement invocation
-  - which have a function or a class as their first argument
+  - It will check to see what element it renders
+  - Give the corresponding props and 
+  - Will continue to do this until there are no more createElement invocation
+  - Which have a function or a class as their first argument
 
-  1.4. Class based component
+  Class based component
   - class syntax is one of the most common ways to define a React component
   - while more verbose than the function syntax
   - it offers more control in the form of lifecycle hooks
@@ -265,8 +120,8 @@ Why should we update the state directly?
   - using lifecycle hooks
   - executes after the component is render for the first time (componentDidMount)
 
-  1.5. why do functional components in Reactjs not have instance?
-  - [more 1](https://stackoverflow.com/questions/44478809/why-do-functional-component-in-reactjs-not-have-instances)
+  Why do functional components in Reactjs not have instance?
+  - [Read more 1](https://stackoverflow.com/questions/44478809/why-do-functional-component-in-reactjs-not-have-instances)
   - you may not use ref attributes on functional components because they dont have instances
   - the only difference between class and functional components is that can have things like
   - constructor and lifecycle management
@@ -278,7 +133,7 @@ Why should we update the state directly?
   - those features allow the component to keep their state between render and
   - to behave accordingly
   - In that sense, I would call them component which have instance
-  - [more 2](https://github.com/facebook/react/issues/4936#issuecomment-142379068)
+  - [Read more 2](https://github.com/facebook/react/issues/4936#issuecomment-142379068)
   - Ref dont work on the stateless components
 
   1.6. Function Component
