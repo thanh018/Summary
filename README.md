@@ -1,52 +1,27 @@
-I. JAVASCRIPT
+## I. JAVASCRIPT
+## 1. Load Javascript with `async` and  `defer` in <script>
+- With `async`, the file gets downloaded asynchronously and then executed `as soon as it’s downloaded`.
+- With `defer`, the file gets downloaded asynchronously, but executed only when the `document parsing is completed`
+- [Read more](https://www.digitalocean.com/community/tutorials/html-defer-async)
 
-2. Load javascript: defer, async, đặt cuối thẻ body khác nhau sao?
-[Read more](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
-
-  2.1. Defect
-  - Delaying script execution until the HTML parse has finished
-  - The DOM will be available for your script
-  - Not every browsers supports defer yet
-  - If your second script depends upon the first script (your second script uses the jQuery loading in the first script)
-  - Defer script will still be executed in order
-  - Until after the document has been parsed
-
-  In `<head>` tag
-  - The loading of script will be deferred until DOM has been parsed
-  - It wont help you at all in older browsers
-  - It isnt really any faster than just putting the script right before `</body>` tag
-
-  2.2. Async
-  - Dont care script will be available
-  - HTML parsing may be continued. The script will be execution as soon as its ready
-  - Is more useful when you dont care when the script loading
-  - You dont depend upon the script loading
-  - Its not urgent to run soon and its stands alone so nothing else depends upon it
-  - `async` downloads the file during HTML parsing and will pause the HTML parser to execute it when it has finished downloading.
-
-3. Phân biệt var, let, const
-- main difference is scoping rules
-- variable declared by
-- var keyword are scoped to immediate function body (hence function scope)
-- let keyword are scoped to enclosing block denoted by `{}` (hence block scope)
-- https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var
-- let can be re-assigned
-- const can not be re-assigned (can re-assigned value of each key in obj was declared with const)
+## 2. Phân biệt var, let, const
+- Main difference is scoping rules
+- Variable declared by `var` keyword are scoped to immediate function body (hence function scope)
+- Variable declared by `let` keyword are scoped to enclosing block denoted by `{}` (hence block scope)
+- `let` can be re-assigned
+- `const` can not be re-assigned (can re-assigned value of each key in `object` was declared with `const`)
+- [Read more](https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var)
 ```
   function run() {
-    var foo = "Foo";
-    let bar = "Bar";
-
-    console.log(foo, bar); // Foo Bar
-
+    var VAR = "VAR";
+    let LET = "LET";
+    console.log(VAR, bar); // VAR LET
     {
-      let baz = "Bazz";
-      console.log(baz); // Bazz
+      let LET_IN_BLOCK = "LET_IN_BLOCK";
+      console.log(LET_IN_BLOCK); // LET_IN_BLOCK
     }
-
-    console.log(baz); // ReferenceError
+    console.log(LET_IN_BLOCK); // ReferenceError
   }
-
   run();
 ```
 ```
@@ -66,26 +41,24 @@ I. JAVASCRIPT
 ```
 - `My value: 3` was output to console each time `funcs[j]()` was invoked anonynomus function was bound to the same variable
 
-  3.2 Hoisting
-  - variables declared with var are hoisted
-  - initialize with undefined before the code run
-  - they are acessible in their enclosing scope even before the declared
+#3. Hoisting
+  - Variables declared with `var` are hoisted
+  - Initialize with `undefined` before the code run
+  - They are accessible in their enclosing scope even before the declared
   ```
     function run() {
-      console.log(foo); // undefined
-      var foo = "Foo";
-      console.log(foo); // Foo
+      console.log(VAR); // undefined
+      var VAR = "VAR";
+      console.log(VAR); // VAR
     }
-
     run();
   ```
-  - let variables are not initialized until their definition is evaluated.
+  - `let` variables are not initialized until their definition is evaluated.
   ```
     function checkHoisting() {
-      console.log(foo); // ReferenceError
-      let foo = "Foo";
+      console.log(LET); // ReferenceError
+      let LET = "LET";
     }
-
     checkHoisting();
   ```
 
