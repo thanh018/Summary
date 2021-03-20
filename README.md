@@ -191,9 +191,10 @@ Object.assign(objectA, objectB)
 ```
 
 # 11. Implement function
-  case 1: add(1,2); // 3
-  case 2: add(1,2,3); // 6
   ```
+    // case 1: add(1,2); // 3
+    // case 2: add(1,2,3); // 6
+
     function add3(...x) {
       console.log(x)
       return x.reduce((count, item) => count + item, 0);
