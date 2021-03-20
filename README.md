@@ -1,7 +1,7 @@
 I. JAVASCRIPT
 
 2. Load javascript: defer, async, đặt cuối thẻ body khác nhau sao?
-  [Read more](https://stackoverflow.com/questions/10808109/script-tag-async-defer
+[Read more](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
 
   2.1. Defect
   - Delaying script execution until the HTML parse has finished
