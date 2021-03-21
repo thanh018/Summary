@@ -373,7 +373,10 @@ FLOW
   });
 ```
 
-## 13. JSX
+## 13. 
+- JSX stands for JavaScript XML.
+- JSX allows us to write HTML in React.
+- JSX makes it easier to write and add HTML in React.
 - React like libraries, there's no HTML and instead everything is JS
 - Essentially allow us write HTML Javascript
 - Allow also write JS within `{}` ex: `<p>{this.item.content}</p>`
