@@ -348,9 +348,9 @@ FLOW
   - And run subscribers to update UI
 
 ## 12. Ref
-- React's virtual DOM
+- React is virtual DOM
 - There are some cases, you need to interact with the actual elements
-- Ror these occasions, React provides a ref system
+- For these occasions, React provides a ref system
 - Using Refs to get value of an input
 - Using Refs to focus the input
 - To interact with directly DOM element, using React's createRef method allows you just do that
