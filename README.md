@@ -21,11 +21,14 @@
 - `Use Case`: Ideal for scripts that need to interact with the DOM or depend on other scripts.
 
 ## 2. Phân biệt var, let, const
-- Main difference is scoping rules
-- Variable declared by `var` keyword are scoped to immediate function body (hence `function scope`)
-- Variable declared by `let` keyword are scoped to `enclosing block` denoted by `{}` (hence `block scope`)
-- `let` can be re-assigned
-- `const` can not be re-assigned
+| Plugin | var | let | const |
+| ------ | ------ | ------ | ------ |
+Scope |	Function-scoped | Block-scoped |	Block-scoped
+| Hoisting|	Hoisted to the top of its scope and initialized with undefined|	Hoisted to the top of its block but not initialized |	Hoisted to the top of its block but not initialized
+| Re-declaration |	Can be re-declared within the same scope |	Cannot be re-declared within the same scope | Cannot be re-declared within the same scope
+Re-assignment |	Can be re-assigned	| Can be re-assigned	| Cannot be re-assigned
+Initialization |	Optional during declaration	| Optional during declaration	 | Required during declaration
+Use Case	| Use in older codebases or when function-scoping is needed	| Use for variables that may change, especially in loops or conditionals | Use for constants or variables that should not change after initialization
 
 ## 3. Hoisting
   - Variables declared with `var` are hoisted
