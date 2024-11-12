@@ -21,7 +21,7 @@
 - `Use Case`: Ideal for scripts that need to interact with the DOM or depend on other scripts.
 
 ## 2. Phân biệt var, let, const
-| Plugin | var | let | const |
+| Feature | var | let | const |
 | ------ | ------ | ------ | ------ |
 Scope |	Function-scoped | Block-scoped |	Block-scoped
 | Hoisting|	Hoisted to the top of its scope and initialized with undefined|	Hoisted to the top of its block but not initialized |	Hoisted to the top of its block but not initialized
