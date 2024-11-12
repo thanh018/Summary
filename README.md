@@ -30,6 +30,34 @@ Re-assignment |	Can be re-assigned	| Can be re-assigned	| Cannot be re-assigned
 Initialization |	Optional during declaration	| Optional during declaration	 | Required during declaration
 Use Case	| Use in older codebases or when function-scoping is needed	| Use for variables that may change, especially in loops or conditionals | Use for constants or variables that should not change after initialization
 
+
+`var`:
+
+- Scope: Function-scoped, meaning it is accessible within the function it is declared in.
+- Hoisting: Variables declared with var are hoisted to the top of their scope and initialized with undefined.
+- Re-declaration: Can be re-declared within the same scope.
+- Re-assignment: Can be re-assigned.
+- Initialization: Optional during declaration.
+- Use Case: Suitable for older codebases or when function-scoping is required.
+
+`let`:
+
+- Scope: Block-scoped, meaning it is accessible within the block it is declared in (e.g., within {}).
+- Hoisting: Variables declared with let are hoisted to the top of their block but are not initialized.
+- Re-declaration: Cannot be re-declared within the same scope.
+- Re-assignment: Can be re-assigned.
+- Initialization: Optional during declaration.
+- Use Case: Ideal for variables that may change, especially in loops or conditional blocks.
+
+`const`:
+
+- Scope: Block-scoped, similar to let.
+- Hoisting: Variables declared with const are hoisted to the top of their block but are not initialized.
+- Re-declaration: Cannot be re-declared within the same scope.
+- Re-assignment: Cannot be re-assigned after initial assignment.
+- Initialization: Required during declaration.
+- Use Case: Best for constants or variables that should not change after initialization.
+
 ## 3. Hoisting
   - Variables declared with `var` are hoisted
   - Initialize with `undefined` before the code run
