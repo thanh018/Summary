@@ -1,7 +1,16 @@
 ## I. JAVASCRIPT
 ## 1. Load Javascript with `async` and  `defer` in <script>
-- With `async`, the file gets downloaded asynchronously and then executed `as soon as it’s downloaded`
-- With `defer`, the file gets downloaded asynchronously, but executed only when the `document parsing is completed`
+- async Attribute
+`Loading`: The script is downloaded asynchronously, meaning it doesn’t block the HTML parsing process.
+`Execution`: The script is executed as soon as it is downloaded, which can happen at any time, even before the HTML document is fully parsed.
+`Order`: If multiple scripts have the async attribute, they may not execute in the order they appear in the document. Each script runs as soon as it finishes downloading.
+`Use Case`: Best for scripts that do not depend on the DOM or other scripts, such as analytics or advertising scripts.
+
+- defer Attribute
+`Loading`: The script is also downloaded asynchronously, so it doesn’t block the HTML parsing process.
+`Execution`: The script is executed only after the HTML document has been fully parsed, but before the DOMContentLoaded event.
+`Order`: Scripts with the defer attribute are executed in the order they appear in the document.
+`Use Case`: Ideal for scripts that need to interact with the DOM or depend on other scripts.
 
 ## 2. Phân biệt var, let, const
 - Main difference is scoping rules
